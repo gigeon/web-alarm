@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
