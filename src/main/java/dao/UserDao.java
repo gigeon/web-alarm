@@ -11,10 +11,7 @@ public class UserDao {
     }
 
     public BaseMap selectByUserId(BaseMap body) {
-        BaseMap result =  dao.select(
-                "SELECT * FROM TB_USER"
-        );
-
-        return result;
+        String query = String.format("SELECT * FROM TB_USER WHERE USER_ID = %s AND USER_PWD = %s", body.get("userId"), body.get("userPwd"));
+        return dao.select(query);
     }
 }

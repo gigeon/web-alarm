@@ -14,6 +14,15 @@ public class UserService {
     }
 
     public BaseMap login(BaseMap body, HttpServletRequest request) {
-        return userDao.selectByUserId(body);
+        BaseMap result = new BaseMap();
+        BaseMap user = userDao.selectByUserId(body);
+
+        if( !user.isEmpty() ) {
+            result.set("flag", "1");
+        } else {
+            result.set("flag", "0");
+        }
+
+        return result;
     }
 }

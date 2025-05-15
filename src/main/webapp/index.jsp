@@ -38,13 +38,21 @@
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: params.toString() // URL 인코딩된 문자열을 body에 할당
-        }).then(result => {
-            console.log("1111")
-            console.log(result)
-        }).catch(result => {
-            console.log("2222")
-            console.log("result")
+            body: params.toString()
+        })
+        .then(response => {
+            return response.json()
+        })
+        .then(result => {
+            if(result.flag == 1) {
+                // 화면 전환 및 세션 저장 필요
+                window.location.href = "/webAlarm/views/home.jsp";
+            } else {
+                alert("로그인이 불가합니다.")
+            }
+        })
+        .catch(result => {
+            alert("로그인이 불가합니다.")
         })
     }
 </script>

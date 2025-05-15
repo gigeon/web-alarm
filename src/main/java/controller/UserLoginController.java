@@ -26,13 +26,11 @@ public class UserLoginController extends HttpServlet {  // ✅ 클래스명 대�
             throws ServletException, IOException {
         BaseMap body = new BaseMap().setMap(request.getParameterMap());
 
-        System.out.println(body);
         BaseMap result = userService.login(body, request);
-        System.out.println("result");
-        System.out.println(result);
 
-        // 로직 처리 후 (예: 로그인 검증)
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().print(result.toJson());
     }
 }
 
