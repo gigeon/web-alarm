@@ -1,6 +1,8 @@
 package com;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Dao {
     private Connection conn = null;
@@ -57,6 +59,32 @@ public class Dao {
                     Object value = rs.getObject(i);
                     result.set(columnName, value);
                 }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    public List<BaseMap> selectAll(String query) {
+        System.out.println(query);
+        List<BaseMap> result = new ArrayList<BaseMap>();
+        try {
+            psmt = conn.prepareStatement(query);
+
+            ResultSet rs = psmt.executeQuery();
+
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            while (rs.next()) {
+                BaseMap row = new BaseMap();
+                for(int i = 1; i <= columnCount; i++) {
+                    row.set(metaData.getColumnLabel(i), rs.getObject(i));
+                }
+                result.add(row);
             }
 
         } catch (SQLException e) {

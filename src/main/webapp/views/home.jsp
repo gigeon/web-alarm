@@ -2,7 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>웹 알림 프로그램</title>
+    <title>알려드림</title>
+    <link rel="icon" href="../img/logo/icon.png"/>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -16,11 +17,11 @@
     int lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 %>
 
-<div class="monthArea">
+<div class="month_area">
     <h2><%= year %>년 <%= (month + 1) %>월</h2>
 </div>
 
-<div>
+<div class="calender_table">
     <table border="1" cellpadding="5" cellspacing="0">
         <tr>
             <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
@@ -40,7 +41,7 @@
             <%
             } else if (day <= lastDay) {
             %>
-            <td onclick="navigateToDetail(<%= year %>, <%= month + 1 %>, <%= day %>)"><%= day %></td>
+            <td onclick="navigateToDetail(<%= year %>, <%= month + 1 %>, <%= day %>);"><%= day %></td>
             <%
                 day++;
             } else {
@@ -59,10 +60,9 @@
 </div>
 </body>
 <script>
-    function navigateToDetail(year, month, day) {
-        console.log(year)
-        console.log(month)
-        console.log(day)
-    }
+
+function navigateToDetail(year, month, day) {
+    window.location.href = "/webAlarm/views/date.jsp?year=" + year + "&month=" + month + "&day=" + day;
+}
 </script>
 </html>

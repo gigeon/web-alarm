@@ -3,6 +3,7 @@ package com;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BaseMap extends HashMap<String, Object>{
@@ -24,21 +25,45 @@ public class BaseMap extends HashMap<String, Object>{
     }
 
     public String toJson() {
-        String result = "{\n";
+        StringBuilder result = new StringBuilder("{\n");
         int size = this.keySet().size();
         int index = 0;
 
         for (String key : this.keySet()) {
             index++;
-            result += "\t" + "\"" + toCamelCase(key) + "\" : \"" + this.getString(key).toString() + "\"";
-            if (index < size) {
-                result += ",";
+            String camelKey = toCamelCase(key);
+            Object value = this.get(key);
+
+            result.append("\t\"").append(camelKey).append("\" : ");
+
+            if (value instanceof String) {
+                result.append("\"").append(value).append("\"");
+            } else if (value instanceof List) {
+                List<?> list = (List<?>) value;
+                result.append("[\n");
+                for (int i = 0; i < list.size(); i++) {
+                    Object item = list.get(i);
+                    if (item instanceof BaseMap) {
+                        result.append(((BaseMap) item).toJson().replaceAll("(?m)^", "\t\t")); // 들여쓰기 맞춤
+                    } else {
+                        result.append("\"").append(item.toString()).append("\"");
+                    }
+                    if (i < list.size() - 1) result.append(",");
+                    result.append("\n");
+                }
+                result.append("\t]");
+            } else if (value instanceof BaseMap) {
+                result.append(((BaseMap) value).toJson().replaceAll("(?m)^", "\t\t"));
+            } else {
+                result.append("\"").append(value).append("\"");
             }
-            result += "\n";
+
+            if (index < size) result.append(",");
+            result.append("\n");
         }
 
-        result += "}";
-        return result;
+        result.append("}");
+        return result.toString();
     }
 
     public static String toCamelCase(String input) {
