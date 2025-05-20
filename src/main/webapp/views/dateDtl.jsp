@@ -1,0 +1,104 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>알려드림</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <td>제목</td>
+            <td>
+                <input class="cp-text" type="text" id="schdleTtl">
+            </td>
+        </tr>
+        <tr>
+            <td>시작일</td>
+            <td>
+                <input class="cp-dateTime" type="datetime-local" id="startDt">
+            </td>
+            <td>종료일</td>
+            <td>
+                <input class="cp-dateTime" type="datetime-local" id="endDt">
+            </td>
+        </tr>
+        <tr>
+            <td>내용</td>
+            <td>
+                <textarea id="schdleCn" ></textarea>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="btn_area">
+    <button onclick="update()">저장</button>
+    <button onclick="deleteDate()">삭제</button>
+    <button onclick="navigateToReferrer()">이전</button>
+</div>
+</body>
+<script src="../js/api.js"></script>
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const schdleDtlId = urlParams.get("schdleDtlId");
+const contextPath = "${pageContext.request.contextPath}";
+let schdleId = "";
+
+read();
+
+function read() {
+    let param = {"schdleDtlId": schdleDtlId}
+    get(
+        contextPath + "/date/detail",
+        param,
+        (result) => {
+            document.getElementById("schdleTtl").value = result.schdleTtl;
+            document.getElementById("startDt").value = result.startDate;
+            document.getElementById("endDt").value = result.endDate;
+            document.getElementById("schdleCn").value = result.schdleCn;
+            schdleId = result.schdleId
+        },
+        () => {
+            alert("조회에 실패하였습니다.")
+        }
+    )
+}
+function update() {
+    const param = new URLSearchParams();
+    param.append('schdleDtlId', schdleDtlId);
+    param.append('schdleId', schdleId);
+    param.append('startDt', document.getElementById("startDt").value);
+    param.append('endDt', document.getElementById("endDt").value);
+    put(
+        contextPath + "/date",
+        param,
+        () => {
+            alert("저장에 성공하였습니다.")
+        },
+        () => {
+            alert("저장에 실패하였습니다.")
+        }
+    )
+}
+
+function deleteDate() {
+    const param = new URLSearchParams();
+    param.append('schdleDtlId', schdleDtlId);
+    dlt(
+        contextPath + "/date",
+        param,
+        () => {
+            alert("삭제에 성공하였습니다.")
+            navigateToReferrer();
+        },
+        () => {
+            alert("삭제에 실패하였습니다.")
+        }
+    )
+}
+
+function navigateToReferrer() {
+    window.location.href = document.referrer;
+}
+</script>
+</html>

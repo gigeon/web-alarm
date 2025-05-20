@@ -34,3 +34,73 @@
 
 .mb5 { margin-bottom: 5px }
 .mr5 { margin-right: 5px}
+
+.date_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.date_area button {
+    padding: 6px;
+    margin : 5px;
+    height: fit-content;
+    background-color: transparent;
+    border: none;
+    font-size: 10px;
+
+}
+
+.underline {
+    background-color: #40CCFF;
+    height: 2px;
+}
+
+.month_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.month_area button{
+    padding: 6px;
+    margin : 5px;
+    height: fit-content;
+    background-color: transparent;
+    border: none;
+    font-size: 10px;
+}
+
+.calender_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topMenu {
+    height: 30px;
+    width: 850px;
+}
+.topMenu ul li {
+    list-style: none;
+    color: white;
+    background-color: #40CCFF;
+    float: left;
+    line-height: 30px;
+    vertical-align: middle;
+    text-align: center;
+}
+.topMenu .menuLink {
+    text-decoration:none;
+    color: white;
+    display: block;
+    width: 150px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: "Trebuchet MS", Dotum, Arial;
+}
+.topMenu .menuLink:hover {
+    color: #4f9ef1;
+    background-color: #4d4d4d;
+}

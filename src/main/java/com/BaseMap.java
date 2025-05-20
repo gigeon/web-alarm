@@ -1,10 +1,18 @@
 package com;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URLDecoder;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class BaseMap extends HashMap<String, Object>{
 
@@ -84,5 +92,29 @@ public class BaseMap extends HashMap<String, Object>{
         }
 
         return result.toString();
+    }
+
+    public BaseMap setUpdate(HttpServletRequest request) {
+        return this.set("modfDt", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+            .set("modfId", request.getSession().getAttribute("userId"))
+            .set("createDt", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+            .set("createId", request.getSession().getAttribute("userId"));
+    }
+
+    public BaseMap setOtMap(HttpServletRequest request) throws IOException {
+        String body = new BufferedReader(new InputStreamReader(request.getInputStream()))
+                .lines()
+                .collect(Collectors.joining(System.lineSeparator()));
+
+        BaseMap map = new BaseMap();
+        String[] pairs = body.split("&");
+        for (String pair : pairs) {
+            String[] keyValue = pair.split("=");
+            if (keyValue.length == 2) {
+                map.put(URLDecoder.decode(keyValue[0], "UTF-8"),
+                        URLDecoder.decode(keyValue[1], "UTF-8"));
+            }
+        }
+        return map;
     }
 }

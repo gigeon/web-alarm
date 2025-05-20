@@ -1,6 +1,10 @@
 package com;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,5 +96,38 @@ public class Dao {
         }
 
         return result;
+    }
+
+    public void delete(String query) {
+        System.out.println(query);
+        try {
+            psmt = conn.prepareStatement(query);
+
+            psmt.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void update(String query) {
+        System.out.println(query);
+        try {
+            psmt = conn.prepareStatement(query);
+
+            psmt.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void insert(String query) {
+        System.out.println(query);
+        try {
+            psmt = conn.prepareStatement(query);
+
+            psmt.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

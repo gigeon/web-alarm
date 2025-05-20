@@ -26,9 +26,11 @@ public class dateController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        // 세션 확인(Redis 사용 하지 않아 주석)
+//        HttpSession session = request.getSession();
 //        if(
-//            request.getHeader("X-Session-Id") &&
-//            request.getHeader("X-Session-User")
+//            !request.getHeader("X-Session-Id").equals(session.getAttribute("sessionId"))
+//            && !request.getHeader("X-Session-User").equals(session.getAttribute("userId"))
 //        ) {
 //            return;
 //        }
@@ -36,12 +38,70 @@ public class dateController extends HttpServlet {
         BaseMap body = new BaseMap().setMap(request.getParameterMap());
 
         List<BaseMap> list = dateService.readDateAll(body);
-
         BaseMap result = new BaseMap().set("list",list);
 
-        System.out.println(result.toJson());
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().print(result.toJson());
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+//        // 세션 확인(Redis 사용 하지 않아 주석)
+//        HttpSession session = request.getSession();
+//        if(
+//            !request.getHeader("X-Session-Id").equals(session.getAttribute("sessionId"))
+//            && !request.getHeader("X-Session-User").equals(session.getAttribute("userId"))
+//        ) {
+//            return;
+//        }
+
+        BaseMap body = new BaseMap().setOtMap(request);
+
+        dateService.updateDateAll(body, request);
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+//        // 세션 확인(Redis 사용 하지 않아 주석)
+//        HttpSession session = request.getSession();
+//        if(
+//            !request.getHeader("X-Session-Id").equals(session.getAttribute("sessionId"))
+//            && !request.getHeader("X-Session-User").equals(session.getAttribute("userId"))
+//        ) {
+//            return;
+//        }
+
+        BaseMap body = new BaseMap().setOtMap(request);
+
+        dateService.deleteDate(body, request);
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+//        // 세션 확인(Redis 사용 하지 않아 주석)
+//        HttpSession session = request.getSession();
+//        if(
+//            !request.getHeader("X-Session-Id").equals(session.getAttribute("sessionId"))
+//            && !request.getHeader("X-Session-User").equals(session.getAttribute("userId"))
+//        ) {
+//            return;
+//        }
+
+        BaseMap body = new BaseMap().setOtMap(request);
+
+        dateService.createDate(body, request);
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
     }
 }

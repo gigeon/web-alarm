@@ -6,11 +6,19 @@
     <link rel="icon" href="../img/logo/icon.png"/>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+<jsp:include page="../component/nav.jsp"/>
 <body>
 <%
     Calendar cal = Calendar.getInstance();
-    int year = cal.get(Calendar.YEAR);
-    int month = cal.get(Calendar.MONTH);
+
+    String yearParam = request.getParameter("year");
+    String monthParam = request.getParameter("month");
+
+    int year = (yearParam != null) ? Integer.parseInt(yearParam) : cal.get(Calendar.YEAR);
+    int month = (monthParam != null) ? Integer.parseInt(monthParam) : cal.get(Calendar.MONTH);
+
+    cal.set(Calendar.YEAR, year);
+    cal.set(Calendar.MONTH, month);
     cal.set(Calendar.DAY_OF_MONTH, 1);
 
     int startDay = cal.get(Calendar.DAY_OF_WEEK);
@@ -18,10 +26,13 @@
 %>
 
 <div class="month_area">
+    <button onclick="navigateToDate(0, <%= year %>, <%= month %>)"> ◀ </button>
     <h2><%= year %>년 <%= (month + 1) %>월</h2>
+    <button onclick="navigateToDate(1, <%= year %>, <%= month %>)"> ▶ </button>
+
 </div>
 
-<div class="calender_table">
+<div class="calender_area">
     <table border="1" cellpadding="5" cellspacing="0">
         <tr>
             <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
@@ -58,11 +69,40 @@
         %>
     </table>
 </div>
+<div class="btn_area">
+    <button onclick="navigateToCreate()">등록</button>
+    <button onclick="navigateToReferrer()">이전</button>
+</div>
 </body>
 <script>
 
 function navigateToDetail(year, month, day) {
     window.location.href = "/webAlarm/views/date.jsp?year=" + year + "&month=" + month + "&day=" + day;
+}
+
+function navigateToDate(flag, year, month) {
+    if (flag === 0) {
+        // 이전 달
+        month--;
+        if (month < 0) {
+            month = 11;
+            year--;
+        }
+    } else {
+        // 다음 달
+        month++;
+        if (month > 11) {
+            month = 0;
+            year++;
+        }
+    }
+
+    // 페이지 새로 로드하면서 파라미터 전달
+    window.location.href = "/webAlarm/views/home.jsp?year=" + year + "&month=" + month;
+}
+
+function navigateToCreate() {
+    window.location.href = "/webAlarm/views/create.jsp";
 }
 </script>
 </html>
