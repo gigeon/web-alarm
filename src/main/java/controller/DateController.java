@@ -8,13 +8,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.DateService;
-import service.UserService;
 
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/date")
-public class dateController extends HttpServlet {
+public class DateController extends HttpServlet {
     private DateService dateService;
 
     @Override

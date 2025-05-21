@@ -1,3 +1,7 @@
+body {
+    background-color: #f8f9fa;
+}
+
 .login_area {
     position: relative;
     display: flex;
@@ -5,7 +9,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: rgb(255, 255, 255)
+    background-color: #f8f9fa;
 }
 .login_area h1 {
 
@@ -17,7 +21,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background: rgb(255, 255, 255);
+    background: #ffffff;
     border: solid 1px #dee2e6;
 }
 .login_box div {
@@ -29,6 +33,21 @@
 .btn_area {
     display: flex; gap:3px; margin: 10px 0;
 }
+.btn_area button {
+    position:relative; margin:0 1px; display:inline-block; text-decoration:none !important; border:1px solid #212e4e; white-space:nowrap; color:#2b2b2b; vertical-align:top; overflow:visible; cursor: pointer; background:#fff;
+    min-width: auto; height:28px; line-height:26px; padding:0 10px; border-radius: 3px; font-size:14px;
+}
+.btn_area .warning {
+    background-color: #f14f4f;
+    border:0px;
+    color: #ffffff;
+}
+.btn_area .public {
+    background-color: #4f9ef1;
+    border:0px;
+    color: #ffffff;
+}
+
 .btn_area .right { justify-content: flex-end; }
 .btn_area .left { justify-content: start; }
 
@@ -78,29 +97,94 @@
     align-items: center;
 }
 
-.topMenu {
-    height: 30px;
-    width: 850px;
+.calender_area table {
+    width: 600px;
+    height: 400px;
 }
-.topMenu ul li {
-    list-style: none;
-    color: white;
-    background-color: #40CCFF;
-    float: left;
-    line-height: 30px;
-    vertical-align: middle;
+.calender_area th {
+    width: 7px;
+    height: 7px;
     text-align: center;
 }
+
+.calender_area td {
+    width: 7px;
+    height: 7px;
+    text-align: center;
+}
+
+
+.topMenu {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.topMenu ul {
+    background-color: #40CCFF;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.topMenu ul li {
+    list-style: none;
+    text-align: center;
+}
+
 .topMenu .menuLink {
-    text-decoration:none;
+    text-decoration: none;
     color: white;
     display: block;
     width: 150px;
     font-size: 12px;
     font-weight: bold;
     font-family: "Trebuchet MS", Dotum, Arial;
+    line-height: 30px;
+    background-color: #40CCFF;
 }
 .topMenu .menuLink:hover {
-    color: #4f9ef1;
-    background-color: #4d4d4d;
+    color: #4d4d4d;
+    background-color: #4f9ef1;
+}
+
+.board_area {
+    position: relative;
+    padding:10px; border:1px solid #cacbcd; border-radius: 10px; background: #fff;
+    margin: 10px auto; width: 80%;
+}
+
+.board_title {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+
+.board_title h2 {
+    font-weight: normal;
+    font-size: 17px;
+}
+
+.board_title img {
+    width: 17px;
+    height: 17px;
+    object-fit: cover
+}
+.board_grid {
+    
+}
+
+.grid_title {
+    display: flex;
+}
+
+.grid_data {
+    display: flex;
+}
+
+
+.clickable {
+    cursor: pointer;
 }

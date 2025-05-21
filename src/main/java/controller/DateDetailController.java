@@ -10,10 +10,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import service.DateService;
 
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/date/detail")
-public class dateDetailController extends HttpServlet {
+public class DateDetailController extends HttpServlet {
     private DateService dateService;
 
     @Override

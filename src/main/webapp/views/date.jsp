@@ -53,7 +53,7 @@ function initialize() {
                 div.onclick = () => {
                     navigateToDateDetail(item.schdleDtlId)
                 }
-                div.className
+                // div.className
                 div.innerHTML =
                     "<h4>" + item.schdleTtl + "</h4>" +
                     "<h4>" + item.schdleCn + "</h4>";
