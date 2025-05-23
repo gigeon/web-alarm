@@ -15,8 +15,8 @@
             <div>
                 <input type="text" id="userPwd" placeholder="비밀번호"/>
             </div>
-            <div class="btn_area right">
-                <button onclick="login()">로그인</button>
+            <div class="btn_area">
+                <button class="public" onclick="login()">로그인</button>
             </div>
         </div>
     </div>

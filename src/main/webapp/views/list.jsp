@@ -3,6 +3,7 @@
 <head>
     <title>알려드림</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../img/logo/icon.png"/>
 </head>
 <jsp:include page="../component/nav.jsp"/>
 <body>
@@ -12,12 +13,16 @@
         <h2>목록</h2>
     </div>
     <div class="board_grid">
-        <div class="grid_title">
+        <div class="grid_title threeCol">
             <p>제목</p>
             <p>내용</p>
             <p>생성일</p>
         </div>
+        <div class="grid_underline"></div>
         <div id="grid_list"></div>
+    </div>
+    <div class="btn_area">
+
     </div>
 </div>
 </body>
@@ -36,7 +41,7 @@ function read() {
             result.list.forEach(item => {
                 const div = document.createElement("div");
                 div.onclick = () => { navigateToSchdleDtl(item.schdleId) }
-                div.className = "grid_data";
+                div.className = "grid_data threeCol";
                 div.innerHTML =
                     "<p>" + item.schdleTtl + "</p>" +
                     "<p>" + item.schdleCn + "</p>" +

@@ -71,7 +71,6 @@
     </div>
     <div class="btn_area right">
         <button class="public" onclick="navigateToCreate()">등록</button>
-        <button onclick="navigateToReferrer()">이전</button>
     </div>
 </div>
 </body>
@@ -104,6 +103,10 @@ function navigateToDate(flag, year, month) {
 
 function navigateToCreate() {
     window.location.href = "/webAlarm/views/create.jsp";
+}
+
+function navigateToReferrer() {
+    window.location.href = document.referrer;
 }
 </script>
 </html>

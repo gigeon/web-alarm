@@ -31,6 +31,10 @@ public class SchdleService {
     }
 
     public BaseMap readSchdleDetail(BaseMap body) {
-        return schdleDao.selectSchdleDetail(body);
+        BaseMap result = new BaseMap();
+        result
+            .set("list", schdleDao.selectSchdleDetail(body))
+            .set("schdle", schdleDao.selectSchdleBySchdleId(body));
+        return result;
     }
 }

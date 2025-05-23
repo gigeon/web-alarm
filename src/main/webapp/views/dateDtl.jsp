@@ -3,9 +3,10 @@
 <head>
     <title>알려드림</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../img/logo/icon.png"/>
 </head>
 <body>
-<div>
+<div class="board_area">
     <table border="1">
         <tr>
             <td>제목</td>

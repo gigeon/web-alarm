@@ -39,8 +39,32 @@ public class SchdleDao {
         dao.delete(query);
     }
 
-    public BaseMap selectSchdleDetail(BaseMap body) {
-        String query = "";
+    public List<BaseMap> selectSchdleDetail(BaseMap body) {
+        String query =
+            "SELECT \n" +
+                "\t SCHDLE_DTL_ID, \n" +
+                "\t START_DATE, \n" +
+                "\t END_DATE, \n" +
+                "\t CREATE_DT  \n" +
+            "FROM \n" +
+                "\t tb_schdle_dtl \n" +
+            "WHERE \n" +
+                "\t SCHDLE_ID = '" + body.getString("schdleId") + "' \n" +
+                "\t and USE_YN = 1";
+        return dao.selectAll(query);
+    }
+
+    public BaseMap selectSchdleBySchdleId(BaseMap body) {
+        String query =
+                "SELECT \n" +
+                    "\t SCHDLE_ID, \n" +
+                    "\t SCHDLE_TTL, \n" +
+                    "\t SCHDLE_CN, \n" +
+                    "\t CREATE_DT \n" +
+                "FROM \n" +
+                    "\t TB_SCHDLE \n" +
+                "WHERE \n" +
+                    "\t SCHDLE_ID = '" + body.getString("schdleId") + "'";
         return dao.select(query);
     }
 }

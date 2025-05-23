@@ -48,8 +48,8 @@ body {
     color: #ffffff;
 }
 
-.btn_area .right { justify-content: flex-end; }
-.btn_area .left { justify-content: start; }
+.btn_area.right { justify-content: flex-end; }
+.btn_area.left { justify-content: start; }
 
 .mb5 { margin-bottom: 5px }
 .mr5 { margin-right: 5px}
@@ -115,6 +115,7 @@ body {
 
 
 .topMenu {
+    border-radius: 3px;
     height: 30px;
     display: flex;
     justify-content: center;
@@ -173,18 +174,61 @@ body {
     object-fit: cover
 }
 .board_grid {
-    
+    border:1px solid #cacbcd; border-radius: 5px; background: #fff;
+    margin: 10px auto;
 }
 
 .grid_title {
-    display: flex;
+    display: grid;
+    gap: 20px ;
+    text-align: center;
+}
+.threeCol {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.sixCol {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.grid_title > * {
+    border-right: 1px solid #cacbcd;
+    padding: 5px;
+}
+
+.grid_title > *:last-child {
+    border-right: none;
+}
+
+.grid_underline {
+    width: 97%;
+    height: 1px;
+    background-color: #cacbcd;
+    margin: 0px auto;
 }
 
 .grid_data {
-    display: flex;
+    display: grid;
+    gap: 20px ;
+    text-align: center;
 }
 
+.grid_data > * {
+    border-right: 1px solid #cacbcd;
+    padding: 5px;
+}
+
+.grid_data > *:last-child {
+    border-right: none;
+}
 
 .clickable {
     cursor: pointer;
 }
+
+.board_write > table thead th  {font-weight: 600!important;}
+.table_area { position: relative; margin-bottom: 30px;}
+/*.table_area > .btn_area { position: absolute; top:-34px; right:0; margin:0}*/
+.table_area > table { border-top:2px solid #418dff; width: 100%}
+.table_area > table td,
+.table_area > table th { padding:5px 10px; border:1px solid #dcdcde; font-size:15px; color:#333434; text-align: left; background:#fff }
+.table_area > table th { padding-left:15px; font-weight: 400; font-size: 14px; background:#f9f9fb}

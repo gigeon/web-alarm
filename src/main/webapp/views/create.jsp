@@ -3,37 +3,40 @@
 <head>
     <title>알려드림</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../img/logo/icon.png"/>
 </head>
 <body>
-<div>
-    <table border="1">
-        <tr>
-            <td>제목</td>
-            <td>
-                <input class="cp-text" type="text" id="schdleTtl">
-            </td>
-        </tr>
-        <tr>
-            <td>시작일</td>
-            <td>
-                <input class="cp-dateTime" type="datetime-local" id="startDt">
-            </td>
-            <td>종료일</td>
-            <td>
-                <input class="cp-dateTime" type="datetime-local" id="endDt">
-            </td>
-        </tr>
-        <tr>
-            <td>내용</td>
-            <td>
-                <textarea id="schdleCn" ></textarea>
-            </td>
-        </tr>
-    </table>
-</div>
-<div class="btn_area">
-    <button onclick="create()">저장</button>
-    <button onclick="navigateToReferrer()">이전</button>
+<div class="board_area">
+    <div class="table_area">
+        <table>
+            <tr>
+                <th>제목</th>
+                <td>
+                    <input class="cp-text" type="text" id="schdleTtl">
+                </td>
+            </tr>
+            <tr>
+                <th>시작일</th>
+                <td>
+                    <input class="cp-dateTime" type="datetime-local" id="startDt">
+                </td>
+                <th>종료일</th>
+                <td>
+                    <input class="cp-dateTime" type="datetime-local" id="endDt">
+                </td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td>
+                    <textarea id="schdleCn" ></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="btn_area right">
+        <button class="public" onclick="create()">저장</button>
+        <button onclick="navigateToReferrer()">이전</button>
+    </div>
 </div>
 </body>
 <script src="../js/api.js"></script>
@@ -41,7 +44,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const contextPath = "${pageContext.request.contextPath}";
 
-read();
 function create() {
     const param = new URLSearchParams();
     param.append('schdleDtlId', schdleDtlId);
