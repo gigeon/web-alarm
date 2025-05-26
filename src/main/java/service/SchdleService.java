@@ -37,4 +37,8 @@ public class SchdleService {
             .set("schdle", schdleDao.selectSchdleBySchdleId(body));
         return result;
     }
+
+    public List<BaseMap> readSchdleAll() {
+        return schdleDao.selectSchdleAll();
+    }
 }

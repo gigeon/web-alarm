@@ -82,4 +82,23 @@ public class SchdleDao {
                     "\t SCHDLE_ID = '" + body.getString("schdleId") + "'";
         return dao.select(query);
     }
+
+    public List<BaseMap> selectSchdleAll() {
+        String query =
+            "SELECT \n" +
+                "\t TS.SCHDLE_ID, \n" +
+                "\t TSD.SCHDLE_DTL_ID, \n" +
+                "\t TS.SCHDLE_TTL, \n" +
+                "\t TS.SCHDLE_CN, \n" +
+                "\t TSD.START_DATE \n" +
+            "FROM \n" +
+                "\t TB_SCHDLE TS \n" +
+                "JOIN \n" +
+                "\t TB_SCHDLE_DTL TSD \n" +
+                "\t ON TS.SCHDLE_ID = TSD.SCHDLE_ID \n" +
+            "WHERE \n" +
+                "\t TSD.USE_YN = 1 \n" +
+                "\t AND TSD.START_DATE > NOW()";
+        return dao.selectAll(query);
+    }
 }

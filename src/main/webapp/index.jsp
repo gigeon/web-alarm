@@ -22,45 +22,45 @@
     </div>
 </body>
 
+<script src="js/alarm.js"></script>
 <script>
-    function login() {
-        let userId = document.getElementById('userId').value;
-        let userPwd = document.getElementById('userPwd').value;
+function login() {
+    let userId = document.getElementById('userId').value;
+    let userPwd = document.getElementById('userPwd').value;
 
-        const params = new URLSearchParams();
-        params.append('userId', userId);
-        params.append('userPwd', userPwd);
+    const params = new URLSearchParams();
+    params.append('userId', userId);
+    params.append('userPwd', userPwd);
 
-        var contextPath = "${pageContext.request.contextPath}";
-        fetch(contextPath  + '/user/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: params.toString()
-        })
-        .then(response => {
-            return response.json()
-        })
-        .then(result => {
-            if(result.flag == 1) {
-                document.cookie = "sessionId=" + result.sessionid
-                document.cookie = "userId=" + userId
-
-                window.location.href = "/webAlarm/views/home.jsp";
-            } else {
-                alert("로그인이 불가합니다.")
-            }
-        })
-        .catch(result => {
+    var contextPath = "${pageContext.request.contextPath}";
+    fetch(contextPath  + '/user/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: params.toString()
+    })
+    .then(response => {
+        return response.json()
+    })
+    .then(result => {
+        if(result.flag == 1) {
+            insertAlarm();
+            // document.cookie = "sessionId=" + result.sessionid
+            // document.cookie = "userId=" + userId
+            //
+            // window.location.href = "/webAlarm/views/home.jsp";
+        } else {
             alert("로그인이 불가합니다.")
-        })
-    }
+        }
+    })
+    .catch(result => {
+        alert("로그인이 불가합니다.")
+    })
+}
 
-    // function insertAlarm() {
-    //     Notification.requestPermission().then(function(permission) {
-    //         if( permission == gr)
-    //     })
-    // }
+function insertAlarm() {
+    insetAlarmAll();
+}
 </script>
 </html>
