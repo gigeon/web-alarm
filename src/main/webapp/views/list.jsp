@@ -21,6 +21,9 @@
         <div class="grid_underline"></div>
         <div id="grid_list"></div>
     </div>
+    <div class="btn_area right">
+        <button class="public" onclick="navigateToCreate()">등록</button>
+    </div>
 </div>
 </body>
 <script src="../js/api.js"></script>
@@ -56,5 +59,8 @@ function navigateToSchdleDtl(schdleId) {
     window.location.href = "/webAlarm/views/schdleDtl.jsp?schdleId=" + schdleId;
 }
 
+function navigateToCreate() {
+    window.location.href = "/webAlarm/views/create.jsp";
+}
 </script>
 </html>

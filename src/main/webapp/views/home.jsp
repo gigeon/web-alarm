@@ -69,9 +69,6 @@
             %>
         </table>
     </div>
-    <div class="btn_area right">
-        <button class="public" onclick="navigateToCreate()">등록</button>
-    </div>
 </div>
 </body>
 <script>
@@ -99,10 +96,6 @@ function navigateToDate(flag, year, month) {
 
     // 페이지 새로 로드하면서 파라미터 전달
     window.location.href = "/webAlarm/views/home.jsp?year=" + year + "&month=" + month;
-}
-
-function navigateToCreate() {
-    window.location.href = "/webAlarm/views/create.jsp";
 }
 
 function navigateToReferrer() {
