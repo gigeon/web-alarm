@@ -10,25 +10,25 @@
     <div class="table_area">
         <table>
             <tr>
-                <th>제목</th>
-                <td>
-                    <input class="cp-text" type="text" id="schdleTtl">
+                <th colspan="3">제목</th>
+                <td colspan="17">
+                    <input class="cp_text" type="text" id="schdleTtl">
                 </td>
             </tr>
             <tr>
-                <th>시작일</th>
-                <td>
-                    <input class="cp-dateTime" type="datetime-local" id="startDt">
+                <th colspan="3">시작일</th>
+                <td colspan="7">
+                    <input class="cp_dateTime" type="datetime-local" id="startDt">
                 </td>
-                <th>종료일</th>
-                <td>
-                    <input class="cp-dateTime" type="datetime-local" id="endDt">
+                <th colspan="3">종료일</th>
+                <td colspan="7">
+                    <input class="cp_dateTime" type="datetime-local" id="endDt">
                 </td>
             </tr>
             <tr>
-                <th>내용</th>
-                <td>
-                    <textarea id="schdleCn" ></textarea>
+                <th colspan="3">내용</th>
+                <td colspan="17">
+                    <textarea class="cp_textarea" id="schdleCn" ></textarea>
                 </td>
             </tr>
         </table>
@@ -46,10 +46,11 @@ const contextPath = "${pageContext.request.contextPath}";
 
 function create() {
     const param = new URLSearchParams();
-    param.append('schdleDtlId', schdleDtlId);
-    param.append('schdleId', schdleId);
+    param.append('schdleTtl', document.getElementById("schdleTtl").value);
+    param.append('schdleCn', document.getElementById("schdleCn").value);
     param.append('startDt', document.getElementById("startDt").value);
     param.append('endDt', document.getElementById("endDt").value);
+    console.log(contextPath)
     post(
         contextPath + "/date",
         param,

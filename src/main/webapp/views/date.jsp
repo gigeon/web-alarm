@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<div>
+<div class="board_area">
     <div class="date_area">
         <button onclick="navigateToDate(0)"> ◀ </button>
         <h3>
@@ -18,21 +18,21 @@
         <button onclick="navigateToDate(1)"> ▶ </button>
     </div>
     <div class="underline"></div>
+    <div id="schdle_area"></div>
+
+    <div class="btn_area right">
+        <button onclick="navigateToReferrer()">이전</button>
+    </div>
 </div>
 
-<div id="schdle_area"></div>
-
-<div class="btn_area">
-    <button onclick="navigateToReferrer()">이전</button>
-</div>
 </body>
 <script src="../js/api.js"></script>
 <script>
 const urlParams = new URLSearchParams(window.location.search);
 
-const year = urlParams.get("year");
-const month = urlParams.get("month");
-const day = urlParams.get("day");
+let year = urlParams.get("year");
+let month = urlParams.get("month");
+let day = urlParams.get("day");
 
 const param = {
     "year": year,
@@ -50,14 +50,18 @@ function initialize() {
             let schdleArea = document.getElementById("schdle_area");
             result.list.forEach(item => {
                 const div = document.createElement("div");
+                const underLine = document.createElement("div");
                 div.onclick = () => {
                     navigateToDateDetail(item.schdleDtlId)
                 }
-                // div.className
+                div.className = "schdle_row clickable";
+                underLine.className = "schdle_row_underline";
                 div.innerHTML =
                     "<h4>" + item.schdleTtl + "</h4>" +
                     "<h4>" + item.schdleCn + "</h4>";
+                div.appendChild(underLine);
                 schdleArea.appendChild(div);
+
             });
 
         },
@@ -70,7 +74,23 @@ function navigateToDateDetail(schdleDtlId) {
 }
 
 function navigateToReferrer() {
-    window.location.href = document.referrer;
+    window.location.href = "/webAlarm/views/home.jsp"
+}
+
+function navigateToDate(flag) {
+    const currentDate = new Date(year, month, day); // 현재 날짜 객체
+
+    if (flag === 0) {
+        currentDate.setDate(currentDate.getDate() - 1);
+    } else {
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    year = currentDate.getFullYear();
+    month = currentDate.getMonth();
+    day = currentDate.getDate();
+
+    window.location.href = "/webAlarm/views/date.jsp?year=" + year + "&month=" + month + "&day=" + day;
 }
 
 </script>

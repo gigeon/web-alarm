@@ -103,7 +103,7 @@ public class Dao {
         try {
             psmt = conn.prepareStatement(query);
 
-            psmt.executeQuery();
+            psmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -114,7 +114,7 @@ public class Dao {
         try {
             psmt = conn.prepareStatement(query);
 
-            psmt.executeQuery();
+            psmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -125,7 +125,7 @@ public class Dao {
         try {
             psmt = conn.prepareStatement(query);
 
-            psmt.executeQuery();
+            psmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

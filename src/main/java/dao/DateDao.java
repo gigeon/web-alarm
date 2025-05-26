@@ -95,12 +95,12 @@ public class DateDao {
                 "\t MODF_ID\n" +
             ") VALUES (\n" +
                 "\t NEXTVAL(SQ_SCHDLE), \n" +
-                "\t" + body.getString("schdleTTl") + ", \n" +
-                "\t" + body.getString("schdleCn") + ", \n" +
-                "\t" + body.getString("createDt") + ", \n" +
-                "\t" + body.getString("createId") + ", \n" +
-                "\t" + body.getString("modfDt") + ", \n" +
-                "\t" + body.getString("modfId") + "\n" +
+                "\t '" + body.getString("schdleTtl") + "', \n" +
+                "\t '" + body.getString("schdleCn") + "', \n" +
+                "\t '" + body.getString("createDt") + "', \n" +
+                "\t '" + body.getString("createId") + "', \n" +
+                "\t '" + body.getString("modfDt") + "', \n" +
+                "\t '" + body.getString("modfId") + "' \n" +
             ")";
 
         dao.insert(query);
@@ -113,7 +113,7 @@ public class DateDao {
                 "\t SCHDLE_DTL_ID,\n" +
                 "\t SCHDLE_ID,\n" +
                 "\t START_DATE,\n" +
-                "\t END_DT,\n" +
+                "\t END_DATE,\n" +
                 "\t USE_YN,\n" +
                 "\t CREATE_DT,\n" +
                 "\t CREATE_ID,\n" +
@@ -121,14 +121,14 @@ public class DateDao {
                 "\t MODF_ID\n" +
             ") VALUES (\n" +
                 "\t NEXTVAL(SQ_SCHDLE_DTL), \n" +
-                "\t SELECT MAX(SCHDLE_ID) FROM TB_SCHDLE, \n" +
-                "\t" + body.getString("startDt") + ", \n" +
-                "\t" + body.getString("endDt") + ", \n" +
+                "\t (SELECT MAX(SCHDLE_ID) FROM TB_SCHDLE), \n" +
+                "\t '" + body.getString("startDt") + "', \n" +
+                "\t '" + body.getString("endDt") + "', \n" +
                 "\t 1, \n" +
-                "\t" + body.getString("createDt") + ", \n" +
-                "\t" + body.getString("createId") + ", \n" +
-                "\t" + body.getString("modfDt") + ", \n" +
-                "\t" + body.getString("modfId") + "\n" +
+                "\t '" + body.getString("createDt") + "', \n" +
+                "\t '" + body.getString("createId") + "', \n" +
+                "\t '" + body.getString("modfDt") + "', \n" +
+                "\t '" + body.getString("modfId") + "'\n" +
             ")";
 
         dao.insert(query);

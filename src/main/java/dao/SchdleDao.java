@@ -30,12 +30,27 @@ public class SchdleDao {
     }
 
     public void updateSchdle(BaseMap body) {
-        String query = "";
+        String query =
+            "UPDATE TB_SCHDLE \n" +
+            "SET \n" +
+                "\t SCHDLE_TTL = '" + body.getString("schdleTtl") + "',\n" +
+                "\t SCHDLE_CN = '" + body.getString("schdleCn") + "',\n" +
+                "\t MODF_DT = '" + body.getString("modfDt") + "',\n" +
+                "\t MODF_ID = '" + body.getString("modfId") + "'\n" +
+            "WHERE \n" +
+                "\t SCHDLE_ID = '" + body.getString("schdleId") + "'";
         dao.update(query);
     }
 
     public void deleteSchdle(BaseMap body) {
-        String query = "";
+        String query =
+            "UPDATE TB_SCHDLE_DTL \n" +
+            "SET \n" +
+                "\t USE_YN = 0,\n" +
+                "\t MODF_DT = '" + body.getString("modfDt") + "',\n" +
+                "\t MODF_ID = '" + body.getString("modfId") + "'\n" +
+            "WHERE \n" +
+                "\t SCHDLE_ID = '" + body.getString("schdleId") + "'";;
         dao.delete(query);
     }
 
@@ -43,14 +58,14 @@ public class SchdleDao {
         String query =
             "SELECT \n" +
                 "\t SCHDLE_DTL_ID, \n" +
-                "\t START_DATE, \n" +
-                "\t END_DATE, \n" +
+                "\t DATE_FORMAT(START_DATE, '%Y-%m-%d %H:%i:%s') AS START_DATE, \n" +
+                "\t DATE_FORMAT(END_DATE, '%Y-%m-%d %H:%i:%s') AS END_DATE, \n" +
+                "\t USE_YN, \n" +
                 "\t CREATE_DT  \n" +
             "FROM \n" +
-                "\t tb_schdle_dtl \n" +
+                "\t TB_SCHDLE_DTL \n" +
             "WHERE \n" +
-                "\t SCHDLE_ID = '" + body.getString("schdleId") + "' \n" +
-                "\t and USE_YN = 1";
+                "\t SCHDLE_ID = '" + body.getString("schdleId") + "' \n";
         return dao.selectAll(query);
     }
 

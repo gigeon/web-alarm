@@ -3,7 +3,7 @@ const userId = cookies.userId;
 const sessionId = cookies.sessionId;
 
 function post(api, param, onSuccess, onError) {
-    fetch('api', {
+    fetch(api, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -12,9 +12,7 @@ function post(api, param, onSuccess, onError) {
         },
         body : param
     }).then(response => {
-        return response.json()
-    }).then(result => {
-        if(onSuccess) onSuccess(result)
+        if(onSuccess) onSuccess(response)
     }).catch(result => {
         if(onError) onError(result)
     })
@@ -52,13 +50,10 @@ function put(api, param, onSuccess, onError) {
         },
         body : param.toString()
     }).then(response => {
-        return response.json()
-    }).then(result => {
-        if(onSuccess) onSuccess(result)
+        if(onSuccess) onSuccess(response)
     }).catch(result => {
         if(onError) onError(result)
     })
-
 }
 
 function dlt(api, param, onSuccess, onError) {

@@ -56,5 +56,11 @@
             alert("로그인이 불가합니다.")
         })
     }
+
+    // function insertAlarm() {
+    //     Notification.requestPermission().then(function(permission) {
+    //         if( permission == gr)
+    //     })
+    // }
 </script>
 </html>

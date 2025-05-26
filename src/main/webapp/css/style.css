@@ -1,7 +1,13 @@
+/* 기타 css */
 body {
     background-color: #f8f9fa;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
+/* 로그인 css */
 .login_area {
     position: relative;
     display: flex;
@@ -29,28 +35,14 @@ body {
     justify-content: center;
 }
 
-
+/* 버튼 영역 css */
 .btn_area {
     display: flex; gap:3px; margin: 10px 0;
 }
-.btn_area button {
-    position:relative; margin:0 1px; display:inline-block; text-decoration:none !important; border:1px solid #212e4e; white-space:nowrap; color:#2b2b2b; vertical-align:top; overflow:visible; cursor: pointer; background:#fff;
-    min-width: auto; height:28px; line-height:26px; padding:0 10px; border-radius: 3px; font-size:14px;
-}
-.btn_area .warning {
-    background-color: #f14f4f;
-    border:0px;
-    color: #ffffff;
-}
-.btn_area .public {
-    background-color: #4f9ef1;
-    border:0px;
-    color: #ffffff;
-}
-
 .btn_area.right { justify-content: flex-end; }
 .btn_area.left { justify-content: start; }
 
+/* 패딩, 마진 css */
 .mb5 { margin-bottom: 5px }
 .mr5 { margin-right: 5px}
 
@@ -58,7 +50,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .date_area button {
@@ -71,9 +62,12 @@ body {
 
 }
 
+/* 밑줄 */
 .underline {
     background-color: #40CCFF;
     height: 2px;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .month_area {
@@ -173,9 +167,11 @@ body {
     height: 17px;
     object-fit: cover
 }
+
+/* 그리드 영역 css */
 .board_grid {
     border:1px solid #cacbcd; border-radius: 5px; background: #fff;
-    margin: 10px auto;
+    margin: 10px auto 15px auto; width: 95%;
 }
 
 .grid_title {
@@ -221,14 +217,31 @@ body {
     border-right: none;
 }
 
-.clickable {
-    cursor: pointer;
-}
-
 .board_write > table thead th  {font-weight: 600!important;}
-.table_area { position: relative; margin-bottom: 30px;}
+.table_area { position: relative; margin: 0 auto 15px auto; width: 95%;}
 /*.table_area > .btn_area { position: absolute; top:-34px; right:0; margin:0}*/
-.table_area > table { border-top:2px solid #418dff; width: 100%}
+.table_area > table { border-top:2px solid #418dff; width: 100%; border-collapse: collapse;}
 .table_area > table td,
 .table_area > table th { padding:5px 10px; border:1px solid #dcdcde; font-size:15px; color:#333434; text-align: left; background:#fff }
 .table_area > table th { padding-left:15px; font-weight: 400; font-size: 14px; background:#f9f9fb}
+
+/* input 영역 css  */
+.cp_textarea { width: 400px; height: 140px }
+button {
+    position:relative; margin:0 1px; display:inline-block; text-decoration:none !important; border:1px solid #212e4e; white-space:nowrap; color:#2b2b2b; vertical-align:top; overflow:visible; cursor: pointer; background:#fff;
+    min-width: auto; height:28px; line-height:26px; padding:0 10px; border-radius: 3px; font-size:14px;
+}
+button.warning { background-color: #f14f4f; border:0px; color: #ffffff; }
+button.public { background-color: #4f9ef1; border:0px; color: #ffffff; }
+.grid_btn { width: 80px; height: 30px;}
+
+/* 목록1 css */
+.schdle_row {
+    margin: 0 25%;
+}
+
+.schdle_row_underline {
+    height: 2px;
+    background-color: #cacbcd;
+    margin: 0px auto;
+}

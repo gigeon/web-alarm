@@ -7,35 +7,41 @@
 </head>
 <body>
 <div class="board_area">
-    <table border="1">
-        <tr>
-            <td>제목</td>
-            <td>
-                <input class="cp-text" type="text" id="schdleTtl">
-            </td>
-        </tr>
-        <tr>
-            <td>시작일</td>
-            <td>
-                <input class="cp-dateTime" type="datetime-local" id="startDt">
-            </td>
-            <td>종료일</td>
-            <td>
-                <input class="cp-dateTime" type="datetime-local" id="endDt">
-            </td>
-        </tr>
-        <tr>
-            <td>내용</td>
-            <td>
-                <textarea id="schdleCn" ></textarea>
-            </td>
-        </tr>
-    </table>
-</div>
-<div class="btn_area">
-    <button onclick="update()">저장</button>
-    <button onclick="deleteDate()">삭제</button>
-    <button onclick="navigateToReferrer()">이전</button>
+    <div class="board_title">
+        <img src="../img/docs.png">
+        <h2>상세</h2>
+    </div>
+    <div class="table_area">
+        <table>
+            <tr>
+                <td colspan="3">제목</td>
+                <td colspan="17">
+                    <input class="cp_text" type="text" id="schdleTtl" disabled>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="3">시작일</th>
+                <td colspan="7">
+                    <input class="cp_dateTime" type="datetime-local" id="startDt">
+                </td>
+                <th colspan="3">종료일</th>
+                <td colspan="7">
+                    <input class="cp_dateTime" type="datetime-local" id="endDt">
+                </td>
+            </tr>
+            <tr>
+                <th colspan="3">내용</th>
+                <td colspan="17">
+                    <textarea class="cp_textarea" id="schdleCn" disabled></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="btn_area right">
+        <button class="public" onclick="update()">저장</button>
+        <button class="warning" onclick="deleteDate()">삭제</button>
+        <button onclick="navigateToReferrer()">이전</button>
+    </div>
 </div>
 </body>
 <script src="../js/api.js"></script>
