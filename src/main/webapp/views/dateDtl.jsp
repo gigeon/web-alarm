@@ -61,7 +61,7 @@ function read() {
         (result) => {
             document.getElementById("schdleTtl").value = result.schdleTtl;
             document.getElementById("startDt").value = result.startDt;
-            document.getElementById("endDt").value = result.endDate;
+            document.getElementById("endDt").value = result.endDt;
             document.getElementById("schdleCn").value = result.schdleCn;
             schdleId = result.schdleId
         },

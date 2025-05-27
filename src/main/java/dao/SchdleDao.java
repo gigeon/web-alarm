@@ -59,7 +59,7 @@ public class SchdleDao {
             "SELECT \n" +
                 "\t SCHDLE_DTL_ID, \n" +
                 "\t DATE_FORMAT(START_DT, '%Y-%m-%d %H:%i:%s') AS START_DT, \n" +
-                "\t DATE_FORMAT(END_DATE, '%Y-%m-%d %H:%i:%s') AS END_DATE, \n" +
+                "\t DATE_FORMAT(END_DT, '%Y-%m-%d %H:%i:%s') AS END_DT, \n" +
                 "\t USE_YN, \n" +
                 "\t CREATE_DT  \n" +
             "FROM \n" +

@@ -29,7 +29,7 @@ public class DateDao {
             "where \n" +
                 "\t TSD.USE_YN = 1 \n" +
                 "\t AND TSD.START_DT < '" + date + "' \n" +
-                "\t AND TSD.END_DATE > '" + date + "'";
+                "\t AND TSD.END_DT > '" + date + "'";
 
         return dao.selectAll(query);
     }
@@ -42,7 +42,7 @@ public class DateDao {
                 "\t TS.SCHDLE_TTL, \n" +
                 "\t TS.SCHDLE_CN,\n" +
                 "\t TSD.START_DT,\n" +
-                "\t TSD.END_DATE\n" +
+                "\t TSD.END_DT \n" +
             "from \n" +
                 "\t TB_SCHDLE TS \n" +
             "join \n" +
@@ -60,7 +60,7 @@ public class DateDao {
             "UPDATE TB_SCHDLE_DTL \n" +
             "SET \n" +
                 "\t START_DT = '" + body.getString("startDt") + "', \n" +
-                "\t END_DATE = '" + body.getString("endDt") + "', \n" +
+                "\t END_DT = '" + body.getString("endDt") + "', \n" +
                 "\t MODF_DT = '" + body.getString("modfDt") + "', \n" +
                 "\t MODF_ID = '" + body.getString("modfId") + "' \n" +
             "WHERE \n" +
@@ -113,7 +113,7 @@ public class DateDao {
                 "\t SCHDLE_DTL_ID,\n" +
                 "\t SCHDLE_ID,\n" +
                 "\t START_DT,\n" +
-                "\t END_DATE,\n" +
+                "\t END_DT,\n" +
                 "\t USE_YN,\n" +
                 "\t CREATE_DT,\n" +
                 "\t CREATE_ID,\n" +
