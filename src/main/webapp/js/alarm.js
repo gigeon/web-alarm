@@ -1,10 +1,3 @@
-let scheduledTimers = [];
-
-function clearAllScheduledNotifications() {
-    scheduledTimers.forEach(timerId => clearTimeout(timerId));
-    scheduledTimers = [];
-}
-
 function insertAlarmAll() {
     fetch('/webAlarm/schdle/all')
         .then(res => res.json())

@@ -27,7 +27,11 @@
 </div>
 </body>
 <script src="../js/api.js"></script>
+<script src="../js/alarm.js"></script>
 <script>
+
+insertAlarmAll();
+
 const contextPath = "${pageContext.request.contextPath}";
 
 read();

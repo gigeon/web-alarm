@@ -71,7 +71,10 @@
     </div>
 </div>
 </body>
+<script src="../js/alarm.js"></script>
 <script>
+
+    insertAlarmAll();
 
 function navigateToDetail(year, month, day) {
     window.location.href = "/webAlarm/views/date.jsp?year=" + year + "&month=" + month + "&day=" + day;

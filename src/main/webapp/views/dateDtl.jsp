@@ -45,7 +45,11 @@
 </div>
 </body>
 <script src="../js/api.js"></script>
+<script src="../js/alarm.js"></script>
 <script>
+
+insertAlarmAll();
+
 const urlParams = new URLSearchParams(window.location.search);
 const schdleDtlId = urlParams.get("schdleDtlId");
 const contextPath = "${pageContext.request.contextPath}";
