@@ -98,7 +98,7 @@ public class SchdleDao {
                 "\t ON TS.SCHDLE_ID = TSD.SCHDLE_ID \n" +
             "WHERE \n" +
                 "\t TSD.USE_YN = 1 \n" +
-                "\t AND TSD.START_DT > NOW()";
+                "\t AND STR_TO_DATE(TSD.START_DT, \"%Y-%m-%d %H:%i:%s\") > NOW()";
         return dao.selectAll(query);
     }
 }

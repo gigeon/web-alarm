@@ -24,6 +24,10 @@
 
 <script src="js/alarm.js"></script>
 <script>
+var contextPath = "${pageContext.request.contextPath}";
+
+serviceWorker()
+
 function login() {
     let userId = document.getElementById('userId').value;
     let userPwd = document.getElementById('userPwd').value;
@@ -32,7 +36,7 @@ function login() {
     params.append('userId', userId);
     params.append('userPwd', userPwd);
 
-    var contextPath = "${pageContext.request.contextPath}";
+
     fetch(contextPath  + '/user/login', {
         method: 'POST',
         headers: {
@@ -45,11 +49,11 @@ function login() {
     })
     .then(result => {
         if(result.flag == 1) {
-            insertAlarm();
-            // document.cookie = "sessionId=" + result.sessionid
-            // document.cookie = "userId=" + userId
-            //
-            // window.location.href = "/webAlarm/views/home.jsp";
+            document.cookie = "sessionId=" + result.sessionid
+            document.cookie = "userId=" + userId
+
+            insertAlarmAll();
+            window.location.href = "/webAlarm/views/home.jsp";
         } else {
             alert("로그인이 불가합니다.")
         }
@@ -59,8 +63,23 @@ function login() {
     })
 }
 
-function insertAlarm() {
-    insetAlarmAll();
+function serviceWorker() {
+    if ('serviceWorker' in navigator && 'Notification' in window) {
+        navigator.serviceWorker.register(contextPath + '/service-worker.js', { scope: contextPath + "/" })
+            .then(reg => {
+                console.log('✅ Service Worker 등록 성공:', reg);
+            })
+            .catch(err => {
+                console.error('❌ 등록 실패:', err);
+            });
+
+        // 권한 요청
+        Notification.requestPermission().then(permission => {
+            if (permission !== "granted") {
+                alert("알림 권한이 필요합니다.");
+            }
+        });
+    }
 }
 </script>
 </html>

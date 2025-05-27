@@ -1,41 +1,34 @@
-function insetAlarmAll() {
-    const url = "/webAlarm" + "/schdle/all";
-    fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }
-    }).then(response => {
-        if (!response.ok) throw new Error("Fetch failed with status: " + response.status);
-        return response.json();
-    }).then(result => {
-        console.log(result.list)
-        scheduleNotificationAt(result.list)
-    }).catch(error => {
-        console.error(error);
-        alert("알람 등록에 실패하였습니다.");
-    });
+let scheduledTimers = [];
+
+function clearAllScheduledNotifications() {
+    scheduledTimers.forEach(timerId => clearTimeout(timerId));
+    scheduledTimers = [];
 }
 
-function scheduleNotificationAt(list) {
-    const now = new Date();
+function insertAlarmAll() {
+    fetch('/webAlarm/schdle/all')
+        .then(res => res.json())
+        .then(result => {
+            result.list.forEach(item => {
+                const dateTime = new Date(item.startDt);
+                const delay = dateTime.getTime() - new Date().getTime();
 
-    list.forEach(item => {
-        // 1. 날짜 문자열을 ISO 형식으로 변환
-        const dateTime = new Date(item.startDt.replace(" ", "T"));
-        const delay = dateTime.getTime() - now.getTime();
+                if (delay > 0) {
+                    console.log("알람 예약 시간:", dateTime.toLocaleString());
 
-        // 2. 이미 지난 일정은 생략
-        if (delay <= 0) {
-            console.warn(`[${item.schdleTtl}]은 과거 일정이므로 알림 생략`);
-            return;
-        }
-
-        // 3. 지정된 시간에 알림 발생
-        setTimeout(() => {
-            new Notification(item.schdleTtl, {
-                body: item.schdleCn || '일정이 있습니다.',
+                    console.log(delay)
+                    setTimeout(() => {
+                        console.log("111")
+                        new Notification("⏰ " + item.schdleTtl, {
+                            body: item.schdleCn || "일정이 있습니다.",
+                            // icon: "/img/logo/icon.png" // 선택적
+                        });
+                    }, delay);
+                    console.log("222")
+                }
             });
-        }, delay);
-    });
+        })
+        .catch(err => {
+            console.error('❌ 알람 불러오기 실패:', err);
+        });
 }
