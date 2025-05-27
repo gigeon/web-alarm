@@ -28,7 +28,7 @@ public class DateDao {
                 "\t ON TS.SCHDLE_ID = TSD.SCHDLE_ID \n" +
             "where \n" +
                 "\t TSD.USE_YN = 1 \n" +
-                "\t AND TSD.START_DATE < '" + date + "' \n" +
+                "\t AND TSD.START_DT < '" + date + "' \n" +
                 "\t AND TSD.END_DATE > '" + date + "'";
 
         return dao.selectAll(query);
@@ -41,7 +41,7 @@ public class DateDao {
                 "\t TSD.SCHDLE_DTL_ID, \n" +
                 "\t TS.SCHDLE_TTL, \n" +
                 "\t TS.SCHDLE_CN,\n" +
-                "\t TSD.START_DATE,\n" +
+                "\t TSD.START_DT,\n" +
                 "\t TSD.END_DATE\n" +
             "from \n" +
                 "\t TB_SCHDLE TS \n" +
@@ -59,7 +59,7 @@ public class DateDao {
         String query =
             "UPDATE TB_SCHDLE_DTL \n" +
             "SET \n" +
-                "\t START_DATE = '" + body.getString("startDt") + "', \n" +
+                "\t START_DT = '" + body.getString("startDt") + "', \n" +
                 "\t END_DATE = '" + body.getString("endDt") + "', \n" +
                 "\t MODF_DT = '" + body.getString("modfDt") + "', \n" +
                 "\t MODF_ID = '" + body.getString("modfId") + "' \n" +
@@ -112,7 +112,7 @@ public class DateDao {
                 "INTO TB_SCHDLE_DTL (\n" +
                 "\t SCHDLE_DTL_ID,\n" +
                 "\t SCHDLE_ID,\n" +
-                "\t START_DATE,\n" +
+                "\t START_DT,\n" +
                 "\t END_DATE,\n" +
                 "\t USE_YN,\n" +
                 "\t CREATE_DT,\n" +

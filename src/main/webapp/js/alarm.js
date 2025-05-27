@@ -22,7 +22,7 @@ function scheduleNotificationAt(list) {
 
     list.forEach(item => {
         // 1. 날짜 문자열을 ISO 형식으로 변환
-        const dateTime = new Date(item.startDate.replace(" ", "T"));
+        const dateTime = new Date(item.startDt.replace(" ", "T"));
         const delay = dateTime.getTime() - now.getTime();
 
         // 2. 이미 지난 일정은 생략

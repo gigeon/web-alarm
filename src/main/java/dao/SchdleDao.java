@@ -58,7 +58,7 @@ public class SchdleDao {
         String query =
             "SELECT \n" +
                 "\t SCHDLE_DTL_ID, \n" +
-                "\t DATE_FORMAT(START_DATE, '%Y-%m-%d %H:%i:%s') AS START_DATE, \n" +
+                "\t DATE_FORMAT(START_DT, '%Y-%m-%d %H:%i:%s') AS START_DT, \n" +
                 "\t DATE_FORMAT(END_DATE, '%Y-%m-%d %H:%i:%s') AS END_DATE, \n" +
                 "\t USE_YN, \n" +
                 "\t CREATE_DT  \n" +
@@ -90,7 +90,7 @@ public class SchdleDao {
                 "\t TSD.SCHDLE_DTL_ID, \n" +
                 "\t TS.SCHDLE_TTL, \n" +
                 "\t TS.SCHDLE_CN, \n" +
-                "\t TSD.START_DATE \n" +
+                "\t TSD.START_DT \n" +
             "FROM \n" +
                 "\t TB_SCHDLE TS \n" +
                 "JOIN \n" +
@@ -98,7 +98,7 @@ public class SchdleDao {
                 "\t ON TS.SCHDLE_ID = TSD.SCHDLE_ID \n" +
             "WHERE \n" +
                 "\t TSD.USE_YN = 1 \n" +
-                "\t AND TSD.START_DATE > NOW()";
+                "\t AND TSD.START_DT > NOW()";
         return dao.selectAll(query);
     }
 }

@@ -82,7 +82,7 @@ function read() {
                 div.id = "id" + item.schdleDtlId
                 div.innerHTML =
                     "<p>" + item.schdleDtlId + "</p>" +
-                    "<p>" + item.startDate + "</p>" +
+                    "<p>" + item.startDt + "</p>" +
                     "<p>" + item.endDate + "</p>" +
                     "<p>" + item.createDt  + "</p>" +
                     "<p>" + (item.useYn == "true" ? 'Y' : 'N')  + "</p>" +
