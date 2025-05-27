@@ -28,8 +28,8 @@ public class DateDao {
                 "\t ON TS.SCHDLE_ID = TSD.SCHDLE_ID \n" +
             "where \n" +
                 "\t TSD.USE_YN = 1 \n" +
-                "\t AND TSD.START_DT < '" + date + "' \n" +
-                "\t AND TSD.END_DT > '" + date + "'";
+                "\t AND DATE_FORMAT(TSD.START_DT, '%Y-%m-%d %H:%i:%s') <= DATE_FORMAT('" + date + "' , '%Y-%m-%d %H:%i:%s') \n" +
+                "\t AND DATE_FORMAT(TSD.END_DT, '%Y-%m-%d %H:%i:%s') >= DATE_FORMAT('" + date + "' , '%Y-%m-%d %H:%i:%s') \n";
 
         return dao.selectAll(query);
     }
